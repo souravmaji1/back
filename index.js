@@ -398,6 +398,17 @@ app.post('/deploy', async (req, res) => {
   }
 });
 
+app.get('/status', (req, res) => {
+  res.status(200).json({
+    success: true,
+    status: 'online',
+    message: 'OpenClaw Deploy API is up and running.',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'development',
+  });
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
